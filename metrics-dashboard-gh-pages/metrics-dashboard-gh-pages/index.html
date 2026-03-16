@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Startup Metrics Dashboard</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Max T. @fdizile">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/circle.css" rel="stylesheet">
+    <link href="css/blog.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<!-- ForkMe -->
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<a href="https://github.com/fdizile/metrics-dashboard"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<!-- Sales Bell -->
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<div id="salesbell" class="relative">
+    <div class="sales-bell-container">
+        <div class="sales-bell-starburst starburst"></div>
+    </div>
+    <div class="sales-bell-container">
+        <div class="moneyhover">
+            <div class="sales-bell-money"></div>
+        </div>
+    </div>
+</div>
+
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<!-- Editor -->
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<div class="relative">
+<div id="editor" class="editor">
+    <div class="editor-text-border">
+        <div class="row">
+            <div class="col-xs-8">
+                <input id="editor-input" class="form-control editor-input">
+            </div>
+            <div class="col-xs-2">
+                <button id="editor-save" class="btn btn-success">Save</button>
+            </div>
+            <div class="col-xs-1">
+                <button id="editor-cancel" class="btn btn-danger">X</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<!-- Startup Metric Circles -->
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<div class="container">
+    <div class="section-header">
+        <div class="relative">
+        </div>
+        <ptitle>Max T's</ptitle> <strong>STARTUP METRICS</strong>
+        <span>
+            &nbsp; |&nbsp;
+            <ptitle id="subtitle"></ptitle>
+        </span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <!-- Acquisition -->
+        <div class="col-xs-3">
+            <div id="pc_acquisition" class="c100 p50 big teal">
+                <span id="percent_acquisition" class="percent">1</span>
+                <div id="acquisition-title" class="title editable">acquisition</div>
+
+                <div class="trophies">
+                    <div class="trophyhvr">
+                        <div class="trophy trophyshine"></div>
+                    </div>
+                </div>
+
+                <div class="allstars">
+                    <div class="starhover">
+                        <div class="star starshine1"></div>
+                    </div>
+                    <div class="starhover">
+                        <div class="star starshine2"></div>
+                    </div>
+                    <div class="starhover">
+                        <div class="star starshine3"></div>
+                    </div>
+                </div>
+                <div class="raw-values">
+                    <span id="acquisition" class="editable">1</span>
+                    <sup>/<span id="acquisition_goal" class="editable">1<span></sup>
+                </div>
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activation -->
+        <div class="col-xs-3">
+            <div id="pc_activation" class="c100 p50 big cyan">
+                <span id="percent_activation" class="percent">1</span>
+                <div id="activation-title" class="title editable">activation</div>
+
+                <div class="trophies">
+                    <div class="trophyhvr">
+                        <div class="trophy trophyshine"></div>
+                    </div>
+                </div>
+
+                <div class="allstars">
+                    <div class="starhover">
+                        <div class="star starshine1"></div>
+                    </div>
+                    <div class="starhover">
+                        <div class="star starshine2"></div>
+                    </div>
+                    <div class="starhover">
+                        <div class="star starshine3"></div>
+                    </div>
+                </div>
+                <div class="raw-values">
+                    <span id="activation" class="editable">1</span>
+                    <sup>/<span id="activation_goal" class="editable">1<span></sup>
+                </div>
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Retention -->
+        <div class="col-xs-3">
+            <div id="pc_retention" class="c100 p50 big lime">
+                <span id="percent_retention" class="percent">1</span>
+                <div id="retention-title" class="title editable">retention</div>
+
+                <div class="trophies">
+                    <div class="trophyhvr">
+                        <div class="trophy trophyshine"></div>
+                    </div>
+                </div>
+
+                <div class="allstars">
+                    <div class="starhover">
+                        <div class="star starshine1"></div>
+                    </div>
+                    <div class="starhover">
+                        <div class="star starshine2"></div>
+                    </div>
+                    <div class="starhover">
+                        <div class="star starshine3"></div>
+                    </div>
+                </div>
+                <div class="raw-values">
+                    <span id="retention" class="editable">1</span>
+                    <sup>/<span id="retention_goal" class="editable">1<span></sup>
+                </div>
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue -->
+        <div class="col-xs-3">
+            <div id="pc_revenue" class="c100 p50 big orange">
+                <span id="percent_revenue" class="percent">1</span>
+                <div id="revenue-title" class="title editable">revenue</div>
+
+                <div class="trophies">
+                    <div class="trophyhvr">
+                        <div class="trophy trophyshine"></div>
+                    </div>
+                </div>
+
+                <div class="allstars">
+                    <div class="starhover">
+                        <div class="star starshine1"></div>
+                    </div>
+                    <div class="starhover">
+                        <div class="star starshine2"></div>
+                    </div>
+                    <div class="starhover">
+                        <div class="star starshine3"></div>
+                    </div>
+                </div>
+                <div class="raw-values">
+                    <span id="revenue" class="money editable">1</span>
+                    <sup>/<span id="revenue_goal" class="editable">1<span></sup>
+                </div>
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<!-- Starup Metrics - Referrals / Vanity -->
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<div class="container">
+    <div class="section-header">&nbsp;</div>
+</div>
+
+<div class="blog-bg">
+    <div class="container">
+
+        <div class="row vanity-table">
+
+            <!-- =-=-=-=-= -->
+            <!-- MENTIONS -->
+            <!-- =-=-=-=-= -->
+            <div class="col-xs-3 vanity-table-value">
+                <div><img src="img/twitter.png"></div>
+                <div class="vanity-table-value">
+                    <span class="relative"><span class="vanity-plus">
+                    +</span></span>
+                    <span id="mentions" class="editable">1</span>
+                </div>
+                <div id="vanity_one" class="vanity-table-label editable">
+                    MENTIONS
+                </div>
+            </div>
+
+            <!-- =-=-=-=-= -->
+            <!-- ATTENDIES -->
+            <!-- =-=-=-=-= -->
+            <div class="col-xs-3 vanity-table-value">
+                <div><img src="img/meetup.png"></div>
+                <div class="vanity-table-value">
+                    <span class="relative"><span class="vanity-plus">
+                    +</span></span>
+                    <span id="attendees" class="editable">1</span>
+                </div>
+                <div id="vanity_two" class="vanity-table-label editable">
+                    ATTENDEES
+                </div>
+            </div>
+
+            <!-- =-=-=-=-= -->
+            <!-- ARTICLES -->
+            <!-- =-=-=-=-= -->
+            <div class="col-xs-3 vanity-table-value">
+                <div><img src="img/wordpress.png"></div>
+                <div class="vanity-table-value">
+                    <span class="relative"><span class="vanity-plus">
+                    +</span></span>
+                    <span id="articles" class="editable">1</span>
+                </div>
+                <div id="vanity_three" class="vanity-table-label editable">
+                    ARTICLES
+                </div>
+            </div>
+
+            <!-- =-=-=-=-=-=-= -->
+            <!-- STACKOVERFLOW -->
+            <!-- =-=-=-=-=-=-= -->
+            <div class="col-xs-3 vanity-table-value">
+                <div><img src="img/stackoverflow.png"></div>
+                <div class="vanity-table-value">
+                    <span class="relative"><span class="vanity-plus">
+                    +</span></span>
+                    <span id="stackoverflow" class="editable">1</span>
+                </div>
+                <div id="vanity_four" class="vanity-table-label editable">
+                    STACKOVERFLOW
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<!-- M.E.T.R.I.C.S -->
+<!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= -->
+<div class="container">
+    <div class="super-header">
+        M <span>&bullet;</span>
+        A <span>&bullet;</span>
+        X <span>&bullet;</span>
+        W <span>&bullet;</span>
+        E <span>&bullet;</span>
+        L <span>&bullet;</span>
+        L
+    </div>
+    <div class="super-sub-header">
+        <strong>startup</strong> metrics
+    </div>
+</div>
+
+<script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/startup-metrics.js"></script>
+
+<script type="text/javascript">var _cd_options = { animation: 'bottomBar' };</script>
+<script src="//fightforthefuture.github.io/countdown-widget/widget.min.js"></script>
+
+</body>
+</html>
+

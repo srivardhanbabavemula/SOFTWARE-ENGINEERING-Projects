@@ -1,0 +1,147 @@
+{
+    "name": "ETL_Pipeline",
+    "properties": {
+        "activities": [
+            {
+                "name": "Copy_From_SQL_To_Raw",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "SqlServerSource",
+                        "sqlReaderQuery": "SELECT * FROM [dbo].[SourceTable]",
+                        "queryTimeout": "02:00:00",
+                        "partitionOption": "None"
+                    },
+                    "sink": {
+                        "type": "ParquetSink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        },
+                        "formatSettings": {
+                            "type": "ParquetWriteSettings"
+                        }
+                    },
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "SourceSQLDataset",
+                        "type": "DatasetReference"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "RawDataLakeDataset",
+                        "type": "DatasetReference"
+                    }
+                ]
+            },
+            {
+                "name": "Transform_Data",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Copy_From_SQL_To_Raw",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "TransformData",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "rawDataPath": {
+                            "value": "@pipeline().parameters.rawDataPath",
+                            "type": "Expression"
+                        },
+                        "curatedDataPath": {
+                            "value": "@pipeline().parameters.curatedDataPath",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Load_To_Synapse",
+                "type": "Copy",
+                "dependsOn": [
+                    {
+                        "activity": "Transform_Data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "ParquetSource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": true
+                        }
+                    },
+                    "sink": {
+                        "type": "SqlDWSink",
+                        "allowPolyBase": true,
+                        "polyBaseSettings": {
+                            "rejectType": "percentage",
+                            "rejectValue": 10.0,
+                            "useTypeDefault": true
+                        }
+                    },
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "CuratedDataLakeDataset",
+                        "type": "DatasetReference"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "SynapseDataset",
+                        "type": "DatasetReference"
+                    }
+                ]
+            }
+        ],
+        "parameters": {
+            "rawDataPath": {
+                "type": "string",
+                "defaultValue": "raw/data"
+            },
+            "curatedDataPath": {
+                "type": "string",
+                "defaultValue": "curated/data"
+            }
+        },
+        "annotations": []
+    }
+} 

@@ -1,0 +1,28 @@
+# Resource Group
+resource_group_name = "dw-modernization-rg"
+location           = "eastus"
+
+# Storage Account
+storage_account_name = "datalakestorage"
+
+# Synapse
+synapse_workspace_name = "synapse-workspace"
+synapse_sql_pool_name  = "sqlpool"
+synapse_sql_admin_username = "sqladmin"
+synapse_sql_admin_password = "your-secure-password-here"
+
+# Data Factory
+data_factory_name = "adf-dw-modernization"
+
+# SQL Server
+sql_server_name = "sqlserver-dw"
+sql_database_name = "sqldb-dw"
+sql_admin_username = "sqladmin"
+sql_admin_password = "your-secure-password-here"
+
+# Tags
+tags = {
+  Environment = "Production"
+  Project     = "DataWarehouse"
+  Owner       = "YourTeam"
+} 
